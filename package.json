@@ -1,19 +1,17 @@
 {
   "name": "ddb-partyview-proxy",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Local API proxy for the ddb-party-view symbiote.",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
+    "express": "^4.19.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "helmet": "^8.1.0",
-    "morgan": "^1.10.1",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
     "node-fetch": "^3.3.2"
   }
 }

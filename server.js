@@ -7,16 +7,9 @@ import fetch from "node-fetch";
 
 const app = express();
 
-// Basic hardening + CORS so TaleSpire/Symbiote can call you from anywhere
 app.use(helmet());
 app.use(cors({ origin: "*", methods: ["GET"] }));
 app.use(morgan("tiny"));
-
-/**
- * GET /api?character=<id>
- * Forwards to:
- * https://character-service.dndbeyond.com/character/v5/character/<id>
- */
 app.get("/api", async (req, res) => {
   const id = (req.query.character || "").toString().trim();
 
@@ -32,7 +25,6 @@ app.get("/api", async (req, res) => {
   try {
     const r = await fetch(target, {
       headers: {
-        // Be polite; some services dislike the default UA
         "User-Agent": "TS-PartyView-LocalProxy/1.0",
         "Accept": "application/json"
       }
@@ -57,7 +49,7 @@ app.get("/api", async (req, res) => {
   }
 });
 
-// Health check (optional)
+// Health check
 app.get("/healthz", (_req, res) => res.json({ ok: true }));
 
 const PORT = process.env.PORT || 3000;
